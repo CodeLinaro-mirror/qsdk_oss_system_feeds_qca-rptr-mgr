@@ -54,6 +54,18 @@ let main_obj = {
 			ubus.call("wpa_supplicant", "csa_finish_event", { freq: req.args.freq } );
 		}
 	},
+	acs_completed: {
+		args: {
+			event: "",
+			success: 0,
+			channel: 0,
+			freq: 0,
+		},
+		call: function(req) {
+			rptr_mgr.printf(`acs_completed event received in rptr_mgr.uc success=${req.args.success} channel=${req.args.channel} freq=${req.args.freq}`);
+			ubus.call("wpa_supplicant", "start_scan_post_acs", { } );
+		}
+	},
 };
 
 rptr_mgr.data.ubus = ubus;
