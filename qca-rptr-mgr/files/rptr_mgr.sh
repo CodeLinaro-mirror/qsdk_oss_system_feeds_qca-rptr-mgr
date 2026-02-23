@@ -26,6 +26,7 @@ for entry in $(ls "$HOSTAPD_DIR"); do
     case "$entry" in
         *_link*) continue ;;  # Skip link interfaces
         global) continue ;;   # Skip global
+        hostapd_if_eloop*) continue ;;
     esac
 
     echo "mld_ap=$entry" >> "$CONF_FILE"
